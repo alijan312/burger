@@ -35,6 +35,7 @@
               <span><strong>{{this.burger_name}} </strong></span>
               <button type="button" class="eatburger btn btn-success" data-id="{{id}}"
                 data-newDevoured="{{devour}}">Devour</button>
+                <hr>
               {{/unless}}
               {{/each}}
             </ul>
@@ -52,6 +53,7 @@
               {{#each burgers}}
               {{#if devoured}}
               <span><strong>{{this.burger_name}} </strong></span>
+              <hr>
               {{/if}}
               {{/each}}
             </ul>
