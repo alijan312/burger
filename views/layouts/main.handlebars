@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {{!--
+    <link rel="stylesheet" href="/models/public/assets/css/burger_style.css" type="text/css" /> --}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Burgers</title>
+</head>
+
+
+<body>
+    {{{ body }}}
+
+    <script>
+        $(function () {
+            $("#submit").on("click", function (event) {
+                event.preventDefault();
+
+                let newBurger = {
+                    burger_name: $("#newBurger").val().trim(),
+                    devoured: 0
+                };
+                $.ajax("/api/burgers", {
+                    type: "POST",
+                    data: newBurger
+                }).then(function () {
+                    console.log("Added new burger");
+                    location.reload();
+                });
+            });
+
+            $(".eatburger").on("click", function (event) {
+                event.preventDefault();
+
+                let id = $(this).data("id");
+                let devouredState = {
+                    devoured: 1
+                };
+
+                $.ajax("/api/burgers/" + id, {
+                    type: "PUT",
+                    data: devouredState
+                }).then(function () {
+                    console.log("Burger devoured");
+                    location.reload();
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

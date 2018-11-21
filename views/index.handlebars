@@ -1,0 +1,66 @@
+<div class="jumbotron container">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 class="display-4">Eat-da-burger</h1>
+        <p class="lead">Add a new burger you want to eat</p>
+        <form>
+          <div class="burger-form">
+            <input type="text" class="create-burger" id="newBurger" placeholder="New Burger">
+          </div>
+          <br>
+          <button type="submit" id='submit' class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="col-sm-6">
+        {{!-- <img src="../models/public/assets/img/burger.jpg" class="img-thumbnail"> --}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <div id="wins" class="card">
+        <h5 class="card-header">Burgers ready to eat</h5>
+        <div class="card-body">
+          <div class="text-center">
+            <ul>
+              {{#each burgers}}
+              {{#unless devoured}}
+              <span><strong>{{this.burger_name}} </strong></span>
+              <button type="button" class="eatburger btn btn-success" id="{{this.id}}"
+                data-newDevoured="{{devour}}">Devour</button>
+              <hr>
+              {{/unless}}
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <h5 class="card-header">Devoured burgers</h5>
+        <div class="card-body">
+          <div class="text-center">
+            <ul>
+              {{#each burgers}}
+              {{#if devoured}}
+              <span><strong>{{this.burger_name}} </strong></span>
+              {{/if}}
+              {{/each}}
+            </ul>
+          </div>
+          <h3></h3>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
